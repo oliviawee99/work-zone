@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Liv</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIV</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="portfolio.html" class="nav-link active">Portfolio</a>
+      <a href="about.html" class="nav-link">About</a>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <span class="section-label">Portfolio</span>
+    <h1 class="page-heading">AI tools I've built<br /><em>for HR operations.</em></h1>
+    <p class="page-sub">Each tool started as a real problem. Built with Claude API, designed for people teams.</p>
+  </section>
+
+  <!-- PROJECT 1 -->
+  <section class="project" id="onboarding-roundup">
+    <div class="project-meta">
+      <span class="project-num">01</span>
+      <span class="project-tag">Automation · Jira · Claude API</span>
+    </div>
+    <div class="project-body">
+      <h2 class="project-title">Onboarding Roundup Agent</h2>
+      <p class="project-desc">
+        Every new hire generates a web of Jira tickets — IT setup, system access, equipment, buddy assignments, 
+        training schedules. Each ticket has an owner. Every owner needs to know what they're responsible for.
+      </p>
+      <p class="project-desc">
+        Before this tool, I was manually cross-referencing tickets, figuring out who owned what, 
+        and composing individual messages for each team member. Multiple times a week. 30+ minutes each time.
+      </p>
+      <p class="project-desc">
+        This agent reads all open onboarding tickets, maps actions to owners, accounts for dependencies 
+        and edge cases, and drafts a personalized message per team member — complete and ready to send.
+      </p>
+      <div class="project-stats">
+        <div class="project-stat">
+          <span class="stat-num">30+</span>
+          <span class="stat-label">minutes saved per session</span>
+        </div>
+        <div class="project-stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">coverage across all action owners</span>
+        </div>
+      </div>
+      <div class="project-tech">
+        <span class="tech-pill">Claude API</span>
+        <span class="tech-pill">Jira</span>
+        <span class="tech-pill">Prompt engineering</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECT 2 -->
+  <section class="project" id="welcome-email">
+    <div class="project-meta">
+      <span class="project-num">02</span>
+      <span class="project-tag">AI Drafting · Onboarding · Claude API</span>
+    </div>
+    <div class="project-body">
+      <h2 class="project-title">Welcome Email Drafter</h2>
+      <p class="project-desc">
+        First impressions matter. A new hire's welcome email should feel warm, specific, and human — 
+        not like it was copy-pasted from a template.
+      </p>
+      <p class="project-desc">
+        This tool takes two inputs: the offer letter request and the offer letter itself. 
+        From those, it extracts the relevant details and drafts a complete, personalized welcome 
+        email ready to review and send. No reformatting. No manual extraction. No blank-page moment.
+      </p>
+      <div class="project-stats">
+        <div class="project-stat">
+          <span class="stat-num">2</span>
+          <span class="stat-label">inputs required</span>
+        </div>
+        <div class="project-stat">
+          <span class="stat-num">~1 min</span>
+          <span class="stat-label">to a complete draft</span>
+        </div>
+      </div>
+      <div class="project-tech">
+        <span class="tech-pill">Claude API</span>
+        <span class="tech-pill">Document parsing</span>
+        <span class="tech-pill">Prompt engineering</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PLACEHOLDERS -->
+  <section class="project coming-soon" id="project-3">
+    <div class="project-meta">
+      <span class="project-num">03</span>
+      <span class="project-tag">In progress</span>
+    </div>
+    <div class="project-body">
+      <h2 class="project-title">Interview Scheduling Agent</h2>
+      <p class="project-desc">
+        An intelligent scheduling tool using n8n and Claude API, integrated with Microsoft 365. 
+        Built to eliminate the back-and-forth of coordinating interviews across hiring managers, 
+        candidates, and interviewers.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">n8n</span>
+        <span class="tech-pill">Claude API</span>
+        <span class="tech-pill">Microsoft 365</span>
+        <span class="tech-pill">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="project coming-soon" id="project-4">
+    <div class="project-meta">
+      <span class="project-num">04</span>
+      <span class="project-tag">In progress</span>
+    </div>
+    <div class="project-body">
+      <h2 class="project-title">Hiring Manager Bottleneck Detector</h2>
+      <p class="project-desc">
+        An agent that surfaces patterns in hiring pipeline data to identify where — and with whom — 
+        candidates are stalling. Gives recruiting teams the insight to intervene proactively.
+      </p>
+      <div class="project-tech">
+        <span class="tech-pill">Claude API</span>
+        <span class="tech-pill">Data analysis</span>
+        <span class="tech-pill">Coming soon</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© 2025</span>
+    <span class="footer-dot">·</span>
+    <span>Victoria, BC</span>
+  </footer>
+
+</body>
+</html>
