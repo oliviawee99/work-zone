@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding Workflow Generator — Liv</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --green-dark: #004822;
+      --green-mid: #1a5c35;
+      --green-muted: #6b8f76;
+      --lime: #D5E27B;
+      --cream: #FFFEF7;
+      --green-border: #c8dece;
+      --green-bg: #f2f7f4;
+    }
+
+    .tool-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + 4rem) 2.5rem 6rem;
+    }
+
+    /* Hero */
+    .tool-hero {
+      background: var(--green-dark);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--lime);
+      opacity: 0.1;
+    }
+
+    .tool-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.25rem;
+    }
+
+    .tool-hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .tool-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tool-hero h1 em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .tool-hero p {
+      font-size: 0.875rem;
+      color: rgba(255,254,247,0.6);
+      line-height: 1.7;
+      max-width: 52ch;
+      position: relative;
+      z-index: 1;
+      font-weight: 300;
+    }
+
+    .stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stack-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid rgba(255,254,247,0.15);
+      color: rgba(255,254,247,0.4);
+    }
+
+    .stack-pill.active {
+      border-color: rgba(213,226,123,0.4);
+      color: var(--lime);
+    }
+
+    /* Form sections */
+    .form-section {
+      border: 1px solid var(--gray-300);
+      margin-bottom: 1px;
+    }
+
+    .form-section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--off-white);
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .form-step {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--cream);
+      background: var(--green-dark);
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .form-section-header h2 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .form-section-header p {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      font-weight: 300;
+      margin-top: 2px;
+    }
+
+    .form-section-body {
+      padding: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.span2 {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 300;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green-dark);
+    }
+
+    .field textarea {
+      resize: none;
+      line-height: 1.6;
+    }
+
+    /* Generate button */
+    .gen-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--green-dark);
+      color: var(--cream);
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .gen-btn:hover { opacity: 0.85; }
+    .gen-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-arrow { transition: transform 0.2s; }
+    .gen-btn:not(:disabled):hover .btn-arrow { transform: translateX(4px); }
+
+    /* Output */
+    .output-wrap { display: none; margin-top: 3rem; }
+    .output-wrap.show { display: block; }
+
+    .output-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-300);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .output-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .output-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      border: 1px solid var(--green-dark);
+      padding: 3px 8px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--gray-300);
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.25rem;
+      border: none;
+      background: none;
+      color: var(--gray-500);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .tab:hover { color: var(--black); }
+
+    .tab.on {
+      color: var(--green-dark);
+      border-bottom-color: var(--green-dark);
+    }
+
+    .pane { display: none; }
+    .pane.on { display: flex; flex-direction: column; gap: 1px; }
+
+    /* Result sections */
+    .result-section {
+      border: 1px solid var(--gray-300);
+    }
+
+    .result-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.875rem 1.25rem;
+      background: var(--off-white);
+      border-bottom: 1px solid var(--gray-300);
+    }
+
+    .result-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      border: 1.5px solid var(--green-dark);
+      flex-shrink: 0;
+    }
+
+    .result-head span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+    }
+
+    .result-body { padding: 0.75rem 1.25rem; }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    .task-item:last-child { border-bottom: none; }
+
+    .task-box {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gray-300);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .task-owner {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      background: var(--off-white);
+      border: 1px solid var(--gray-300);
+      padding: 2px 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .day-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      padding: 1rem 0 0.25rem;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--gray-300);
+      border-top-color: var(--green-dark);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .err {
+      padding: 1rem 1.25rem;
+      background: #fef2f2;
+      border-left: 3px solid var(--red);
+      font-size: 0.875rem;
+      color: #b91c1c;
+      font-weight: 300;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--black); }
+
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .tabs { overflow-x: auto; }
+      .tab { padding: 0.75rem 0.875rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIV</a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="about.html" class="nav-link">About</a>
+    </div>
+  </nav>
+
+  <div class="tool-wrap">
+
+    <a href="portfolio.html" class="back-link">← Back to portfolio</a>
+
+    <div class="tool-hero">
+      <div class="tool-hero-tag">
+        <span class="tool-hero-dot"></span>
+        Proof of concept · People Systems & Automation
+      </div>
+      <h1>Onboarding workflow<br /><em>generator</em></h1>
+      <p>
+        Triggered from hire in Ashby → Claude reasons over the job description →
+        generates role-specific briefs and checklists → pushes to Rippling and Jira.
+        Zero manual initiation from People Ops.
+      </p>
+      <div class="stack-row">
+        <span class="stack-pill active">Ashby</span>
+        <span class="stack-pill active">n8n</span>
+        <span class="stack-pill active">Claude API</span>
+        <span class="stack-pill active">Rippling</span>
+        <span class="stack-pill active">Jira</span>
+        <span class="stack-pill">Notion</span>
+        <span class="stack-pill">Google Suite</span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">
+        <div class="form-step">1</div>
+        <div>
+          <h2>New hire details</h2>
+          <p>In production, this data arrives automatically from Ashby via webhook</p>
+        </div>
+      </div>
+      <div class="form-section-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>New hire name</label>
+            <input type="text" id="f-name" placeholder="e.g. Jordan Lee" />
+          </div>
+          <div class="field">
+            <label>Role title</label>
+            <input type="text" id="f-role" placeholder="e.g. Senior Software Engineer" />
+          </div>
+          <div class="field">
+            <label>Department</label>
+            <select id="f-dept">
+              <option value="">Select...</option>
+              <option>Engineering</option>
+              <option>Product</option>
+              <option>Design</option>
+              <option>Sales</option>
+              <option>Marketing</option>
+              <option>Finance</option>
+              <option>People & HR</option>
+              <option>Operations</option>
+              <option>Customer Success</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Employment type</label>
+            <select id="f-emp">
+              <option value="">Select...</option>
+              <option>Full-time employee</option>
+              <option>EOR (Employer of Record)</option>
+              <option>Contractor</option>
+              <option>Consultant</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Start date</label>
+            <input type="date" id="f-start" />
+          </div>
+          <div class="field">
+            <label>Hiring manager</label>
+            <input type="text" id="f-mgr" placeholder="e.g. Sarah Kim" />
+          </div>
+          <div class="field">
+            <label>Country</label>
+            <input type="text" id="f-country" placeholder="e.g. Canada" />
+          </div>
+          <div class="field">
+            <label>Work arrangement</label>
+            <select id="f-work">
+              <option value="">Select...</option>
+              <option>Hybrid (Toronto HQ)</option>
+              <option>Remote — Canada</option>
+              <option>Remote — International</option>
+              <option>On-site</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-header">
+        <div class="form-step">2</div>
+        <div>
+          <h2>Job description</h2>
+          <p>Claude uses this to generate role-specific outputs rather than generic department templates</p>
+        </div>
+      </div>
+      <div class="form-section-body">
+        <div class="field span2">
+          <textarea id="f-jd" rows="6" placeholder="Paste the job description here — this is what makes each onboarding output specific to the role rather than just the department..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button class="gen-btn" id="genBtn" onclick="generate()">
+      Generate onboarding workflow <span class="btn-arrow">→</span>
+    </button>
+
+    <div class="output-wrap" id="out">
+      <div class="output-header">
+        <h2 class="output-title" id="out-title">Onboarding plan</h2>
+        <span class="output-badge">Claude · AI generated</span>
+      </div>
+
+      <div class="tabs">
+        <button class="tab on" onclick="setTab('hm', this)">Hiring manager brief</button>
+        <button class="tab" onclick="setTab('nh', this)">New hire guide</button>
+        <button class="tab" onclick="setTab('it', this)">IT & finance checklist</button>
+      </div>
+
+      <div class="pane on" id="pane-hm"></div>
+      <div class="pane" id="pane-nh"></div>
+      <div class="pane" id="pane-it"></div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <span>Built by <strong style="font-weight:500">Olivia Wee</strong></span>
+    <span class="footer-dot">·</span>
+    <a href="https://www.linkedin.com/in/oliviawee" target="_blank" style="color: var(--gray-500); transition: color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--gray-500)'">LinkedIn ↗</a>
+    <span class="footer-dot">·</span>
+    <a href="portfolio.html" style="color: var(--gray-500); transition: color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--gray-500)'">Portfolio</a>
+  </footer>
+
+  <script>
+    function setTab(id, btn) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+      document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
+      btn.classList.add('on');
+      document.getElementById('pane-' + id).classList.add('on');
+    }
+
+    function showLoading(paneId) {
+      document.getElementById('pane-' + paneId).innerHTML =
+        '<div class="loading"><div class="spinner"></div><span>Generating with Claude...</span></div>';
+    }
+
+    function renderPane(paneId, json) {
+      const pane = document.getElementById('pane-' + paneId);
+      try {
+        const clean = json.replace(/```json|```/g, '').trim();
+        const data = JSON.parse(clean);
+        let html = '';
+        (data.sections || []).forEach(s => {
+          if (s.day_label) {
+            html += `<div class="day-label">${s.day_label}</div>`;
+          }
+          html += `<div class="result-section">
+            <div class="result-head"><div class="result-dot"></div><span>${s.title}</span></div>
+            <div class="result-body">`;
+          (s.tasks || []).forEach(t => {
+            const owner = t.owner
+              ? `<span class="task-owner">${t.owner}</span>`
+              : '';
+            html += `<div class="task-item"><div class="task-box"></div><span>${t.task}</span>${owner}</div>`;
+          });
+          html += '</div></div>';
+        });
+        pane.innerHTML = html;
+      } catch (e) {
+        pane.innerHTML = '<div class="err">Could not parse response. Please try again.</div>';
+      }
+    }
+
+    async function callClaude(system, user, paneId) {
+      showLoading(paneId);
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system,
+            messages: [{ role: 'user', content: user }]
+          })
+        });
+        const data = await res.json();
+        const text = (data.content || [])
+          .filter(b => b.type === 'text')
+          .map(b => b.text)
+          .join('');
+        renderPane(paneId, text);
+      } catch (e) {
+        document.getElementById('pane-' + paneId).innerHTML =
+          '<div class="err">Something went wrong. Please try again.</div>';
+      }
+    }
+
+    async function generate() {
+      const name    = document.getElementById('f-name').value    || 'New hire';
+      const role    = document.getElementById('f-role').value    || 'team member';
+      const dept    = document.getElementById('f-dept').value    || 'their department';
+      const emp     = document.getElementById('f-emp').value     || 'full-time';
+      const start   = document.getElementById('f-start').value   || 'upcoming start date';
+      const mgr     = document.getElementById('f-mgr').value     || 'their manager';
+      const country = document.getElementById('f-country').value || 'Canada';
+      const work    = document.getElementById('f-work').value    || 'hybrid';
+      const jd      = document.getElementById('f-jd').value      || '';
+
+      const btn = document.getElementById('genBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:1.5px;border-color:rgba(255,254,247,0.25);border-top-color:var(--cream)"></div> Generating...';
+
+      const out = document.getElementById('out');
+      out.classList.add('show');
+      document.getElementById('out-title').textContent =
+        name && name !== 'New hire' ? `${name} · ${role}` : 'Onboarding plan';
+
+      document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('on', i === 0));
+      document.querySelectorAll('.pane').forEach((p, i) => p.classList.toggle('on', i === 0));
+
+      const ctx = `New hire: ${name} | Role: ${role} | Department: ${dept} | Employment type: ${emp} | Start date: ${start} | Hiring manager: ${mgr} | Country: ${country} | Work arrangement: ${work}${jd ? ` | Job description: ${jd.slice(0, 800)}` : ''}`;
+
+      const j = `Respond ONLY with valid JSON. No preamble, no markdown fences. Structure: {"sections":[{"title":"string","day_label":"optional string","tasks":[{"task":"string","owner":"optional short string"}]}]}. Owner values: "People Ops", "IT", "Finance", "Hiring manager", "New hire", "Recruiter".`;
+
+      await Promise.all([
+        callClaude(
+          `You are a People Ops specialist. Generate a hiring manager onboarding brief. Use the job description as the primary input to make it genuinely role-specific. Include sections: pre-start prep, day 1 agenda, week 1 check-ins, 30/60/90 day milestones. ${j}`,
+          ctx, 'hm'
+        ),
+        callClaude(
+          `You are a People Ops specialist. Generate a warm, practical new hire onboarding guide. Use the JD to tailor it specifically to their role. Include sections: before you start, your first day, first week priorities, key tools to set up, people to meet. ${j}`,
+          ctx, 'nh'
+        ),
+        callClaude(
+          `You are a People Ops specialist. Generate a detailed IT and Finance onboarding checklist. Use the role and JD to determine the right systems access. Include sections: IT setup and provisioning, systems access, payroll setup, benefits enrollment, equipment, compliance. Tailor to employment type and country. Assign owners throughout. ${j}`,
+          ctx, 'it'
+        )
+      ]);
+
+      btn.disabled = false;
+      btn.innerHTML = 'Regenerate workflow <span class="btn-arrow">→</span>';
+    }
+  </script>
+
+</body>
+</html>
