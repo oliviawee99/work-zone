@@ -35,15 +35,15 @@
     <div class="project-body">
       <h2 class="project-title">Onboarding Roundup Agent</h2>
       <p class="project-desc">
-        Every new hire generates a web of Jira tickets — IT setup, system access, equipment, buddy assignments, 
+        Every new hire generates a web of Jira tickets — IT setup, system access, equipment, buddy assignments,
         training schedules. Each ticket has an owner. Every owner needs to know what they're responsible for.
       </p>
       <p class="project-desc">
-        Before this tool, I was manually cross-referencing tickets, figuring out who owned what, 
+        Before this tool, I was manually cross-referencing tickets, figuring out who owned what,
         and composing individual messages for each team member. Multiple times a week. 30+ minutes each time.
       </p>
       <p class="project-desc">
-        This agent reads all open onboarding tickets, maps actions to owners, accounts for dependencies 
+        This agent reads all open onboarding tickets, maps actions to owners, accounts for dependencies
         and edge cases, and drafts a personalized message per team member — complete and ready to send.
       </p>
       <div class="project-stats">
@@ -75,12 +75,12 @@
     <div class="project-body">
       <h2 class="project-title">Welcome Email Drafter</h2>
       <p class="project-desc">
-        First impressions matter. A new hire's welcome email should feel warm, specific, and human — 
+        First impressions matter. A new hire's welcome email should feel warm, specific, and human —
         not like it was copy-pasted from a template.
       </p>
       <p class="project-desc">
-        This tool takes two inputs: the offer letter request and the offer letter itself. 
-        From those, it extracts the relevant details and drafts a complete, personalized welcome 
+        This tool takes two inputs: the offer letter request and the offer letter itself.
+        From those, it extracts the relevant details and drafts a complete, personalized welcome
         email ready to review and send. No reformatting. No manual extraction. No blank-page moment.
       </p>
       <div class="project-stats">
@@ -103,17 +103,65 @@
 
   <div class="divider"></div>
 
-  <!-- PLACEHOLDERS -->
-  <section class="project coming-soon" id="project-3">
+  <!-- PROJECT 3 — ONBOARDING WORKFLOW GENERATOR -->
+  <section class="project" id="onboarding-workflow">
     <div class="project-meta">
       <span class="project-num">03</span>
+      <span class="project-tag">Systems · Automation · Claude API · n8n</span>
+    </div>
+    <div class="project-body">
+      <h2 class="project-title">Onboarding Workflow Generator</h2>
+      <p class="project-desc">
+        When a candidate is marked hired, People Ops shouldn't have to do anything. This tool demonstrates
+        what a fully triggered onboarding workflow looks like — from Ashby to Rippling to the hiring
+        manager's inbox — with Claude as the intelligent layer in the middle.
+      </p>
+      <p class="project-desc">
+        The key insight: generic onboarding templates fail because they're built at the department level.
+        By passing the job description to Claude as a primary input, every output is specific to the role —
+        the hiring manager brief, the new hire guide, and the IT and finance checklist all reflect
+        what that person will actually be doing on day one.
+      </p>
+      <p class="project-desc">
+        In a full production build, this triggers automatically via Ashby webhook → n8n → Claude API →
+        Rippling and Jira. The interactive demo below shows the Claude output layer live.
+      </p>
+      <div class="project-stats">
+        <div class="project-stat">
+          <span class="stat-num">0</span>
+          <span class="stat-label">manual steps for People Ops</span>
+        </div>
+        <div class="project-stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">role-specific outputs generated</span>
+        </div>
+      </div>
+      <div class="project-tech">
+        <span class="tech-pill">Claude API</span>
+        <span class="tech-pill">n8n</span>
+        <span class="tech-pill">Ashby</span>
+        <span class="tech-pill">Rippling</span>
+        <span class="tech-pill">Jira</span>
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <a href="onboarding-generator.html" class="btn-primary" target="_blank">Launch tool →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECT 4 -->
+  <section class="project coming-soon" id="project-4">
+    <div class="project-meta">
+      <span class="project-num">04</span>
       <span class="project-tag">In progress</span>
     </div>
     <div class="project-body">
       <h2 class="project-title">Interview Scheduling Agent</h2>
       <p class="project-desc">
-        An intelligent scheduling tool using n8n and Claude API, integrated with Microsoft 365. 
-        Built to eliminate the back-and-forth of coordinating interviews across hiring managers, 
+        An intelligent scheduling tool using n8n and Claude API, integrated with Microsoft 365.
+        Built to eliminate the back-and-forth of coordinating interviews across hiring managers,
         candidates, and interviewers.
       </p>
       <div class="project-tech">
@@ -127,15 +175,16 @@
 
   <div class="divider"></div>
 
-  <section class="project coming-soon" id="project-4">
+  <!-- PROJECT 5 -->
+  <section class="project coming-soon" id="project-5">
     <div class="project-meta">
-      <span class="project-num">04</span>
+      <span class="project-num">05</span>
       <span class="project-tag">In progress</span>
     </div>
     <div class="project-body">
       <h2 class="project-title">Hiring Manager Bottleneck Detector</h2>
       <p class="project-desc">
-        An agent that surfaces patterns in hiring pipeline data to identify where — and with whom — 
+        An agent that surfaces patterns in hiring pipeline data to identify where — and with whom —
         candidates are stalling. Gives recruiting teams the insight to intervene proactively.
       </p>
       <div class="project-tech">
