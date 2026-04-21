@@ -3,7 +3,7 @@
 
 Personal portfolio site showcasing AI-powered HR automation tools.
 
-Built with plain HTML, CSS, and Google Fonts. No frameworks, no build step.
+Built with plain HTML, CSS, and Google Fonts. No frameworks, no build step. 
 
 ## Pages
 
