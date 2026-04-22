@@ -541,7 +541,7 @@
 
   <script>
     const CONFIG = {
-      systemPrompt: 'You are a People Ops specialist. Respond ONLY with valid JSON. Structure: {"sections":[{"title":"string","day_label":"optional string","tasks":[{"task":"string","owner":"optional string"}]}]}. Owners: People Ops, IT, Finance, Hiring manager, New hire, Recruiter.',
+      systemPrompt: 'You are a People Ops specialist. Respond ONLY with valid JSON. Structure: {"sections":[{"title":"string","day_label":"optional string","tasks":[{"task":"string","owner":"optional string"}]}]}. Keep task descriptions concise (under 15 words). Owners: People Ops, IT, Finance, Hiring manager, New hire, Recruiter.',
       tasks: [
         { id: 'hm', label: 'Hiring manager brief', instructions: 'Generate a hiring manager onboarding brief. Include pre-start prep, day 1, week 1, and 30/60/90 day milestones.' },
         { id: 'nh', label: 'New hire guide', instructions: 'Generate a warm, practical new hire guide. Include before you start, first day, week 1 priorities, and key tools.' },
@@ -564,7 +564,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             model: 'claude-haiku-4-5-20251001',
-            max_tokens: 2000,
+            max_tokens: 4096,
             system: CONFIG.systemPrompt + " " + config.instructions,
             messages: [{ role: 'user', content: ctx }]
           })
