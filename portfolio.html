@@ -112,24 +112,26 @@
     <div class="project-body">
       <h2 class="project-title">Onboarding Workflow Generator</h2>
       <p class="project-desc">
-        When a candidate is marked hired, People Ops shouldn't have to do anything. This tool demonstrates
-        what a fully triggered onboarding workflow looks like — from Ashby to Rippling to the hiring
-        manager's inbox — with Claude as the intelligent layer in the middle.
+        Rippling's native onboarding workflows handle repeatable, role-agnostic tasks well.
+        What they can't do is generate content specific to the role — a hiring manager brief
+        tailored to what this person will actually be doing, or a first-week guide that reflects
+        the job description rather than just the department.
       </p>
       <p class="project-desc">
-        The key insight: generic onboarding templates fail because they're built at the department level.
-        By passing the job description to Claude as a primary input, every output is specific to the role —
-        the hiring manager brief, the new hire guide, and the IT and finance checklist all reflect
-        what that person will actually be doing on day one.
+        This proof of concept sits in that gap. A hire in Ashby triggers n8n, which passes the
+        job description to Claude. Claude generates role-specific outputs: a hiring manager brief,
+        a new hire guide, and a task list. The hiring manager reviews and approves — a deliberate
+        human-in-the-loop checkpoint to ensure quality before anything gets committed. Approved
+        tasks are then written back into Rippling as onboarding workflow items via API, so everything
+        lives in one place and nothing duplicates what's already there.
       </p>
       <p class="project-desc">
-        In a full production build, this triggers automatically via Ashby webhook → n8n → Claude API →
-        Rippling and Jira. The interactive demo below shows the Claude output layer live.
+        The interactive demo shows the Claude output layer. The architecture document covers the full flow.
       </p>
       <div class="project-stats">
         <div class="project-stat">
-          <span class="stat-num">0</span>
-          <span class="stat-label">manual steps for People Ops</span>
+          <span class="stat-num">1</span>
+          <span class="stat-label">human checkpoint, zero redundancy</span>
         </div>
         <div class="project-stat">
           <span class="stat-num">3</span>
@@ -141,7 +143,6 @@
         <span class="tech-pill">n8n</span>
         <span class="tech-pill">Ashby</span>
         <span class="tech-pill">Rippling</span>
-        <span class="tech-pill">Jira</span>
       </div>
       <div style="margin-top: 1.5rem;">
         <a href="onboarding-generator.html" class="btn-primary" target="_blank">Launch tool →</a>
