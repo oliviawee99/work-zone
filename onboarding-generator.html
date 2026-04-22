@@ -458,7 +458,6 @@
   </nav>
 
   <div class="tool-wrap">
-
     <a href="portfolio.html" class="back-link">← Back to portfolio</a>
 
     <div class="tool-hero">
@@ -467,85 +466,45 @@
         Proof of concept · People Systems & Automation
       </div>
       <h1>Onboarding workflow<br /><em>generator</em></h1>
-      <p>
-        Triggered from hire in Ashby → Claude reasons over the job description →
-        generates role-specific briefs and checklists → pushes to Rippling and Jira.
-        Zero manual initiation from People Ops.
-      </p>
+      <p>Triggered from hire in Ashby → Claude reasons over the job description → generates role-specific briefs and checklists → pushes to Rippling and Jira. Zero manual initiation from People Ops.</p>
       <div class="stack-row">
         <span class="stack-pill active">Ashby</span>
         <span class="stack-pill active">n8n</span>
         <span class="stack-pill active">Claude API</span>
         <span class="stack-pill active">Rippling</span>
         <span class="stack-pill active">Jira</span>
-        <span class="stack-pill">Notion</span>
-        <span class="stack-pill">Google Suite</span>
       </div>
     </div>
 
     <div class="form-section">
       <div class="form-section-header">
         <div class="form-step">1</div>
-        <div>
-          <h2>New hire details</h2>
-          <p>In production, this data arrives automatically from Ashby via webhook</p>
-        </div>
+        <div><h2>New hire details</h2><p>In production, this data arrives automatically from Ashby</p></div>
       </div>
       <div class="form-section-body">
         <div class="form-grid">
-          <div class="field">
-            <label>New hire name</label>
-            <input type="text" id="f-name" placeholder="e.g. Jordan Lee" />
-          </div>
-          <div class="field">
-            <label>Role title</label>
-            <input type="text" id="f-role" placeholder="e.g. Senior Software Engineer" />
-          </div>
-          <div class="field">
-            <label>Department</label>
+          <div class="field"><label>New hire name</label><input type="text" id="f-name" placeholder="e.g. Jordan Lee" /></div>
+          <div class="field"><label>Role title</label><input type="text" id="f-role" placeholder="e.g. Senior Software Engineer" /></div>
+          <div class="field"><label>Department</label>
             <select id="f-dept">
               <option value="">Select...</option>
-              <option>Engineering</option>
-              <option>Product</option>
-              <option>Design</option>
-              <option>Sales</option>
-              <option>Marketing</option>
-              <option>Finance</option>
-              <option>People & HR</option>
-              <option>Operations</option>
-              <option>Customer Success</option>
+              <option>Engineering</option><option>Product</option><option>Design</option>
+              <option>Sales</option><option>People & HR</option>
             </select>
           </div>
-          <div class="field">
-            <label>Employment type</label>
+          <div class="field"><label>Employment type</label>
             <select id="f-emp">
               <option value="">Select...</option>
-              <option>Full-time employee</option>
-              <option>EOR (Employer of Record)</option>
-              <option>Contractor</option>
-              <option>Consultant</option>
+              <option>Full-time employee</option><option>Contractor</option>
             </select>
           </div>
-          <div class="field">
-            <label>Start date</label>
-            <input type="date" id="f-start" />
-          </div>
-          <div class="field">
-            <label>Hiring manager</label>
-            <input type="text" id="f-mgr" placeholder="e.g. Sarah Kim" />
-          </div>
-          <div class="field">
-            <label>Country</label>
-            <input type="text" id="f-country" placeholder="e.g. Canada" />
-          </div>
-          <div class="field">
-            <label>Work arrangement</label>
+          <div class="field"><label>Start date</label><input type="date" id="f-start" /></div>
+          <div class="field"><label>Hiring manager</label><input type="text" id="f-mgr" placeholder="e.g. Sarah Kim" /></div>
+          <div class="field"><label>Country</label><input type="text" id="f-country" placeholder="e.g. Canada" /></div>
+          <div class="field"><label>Work arrangement</label>
             <select id="f-work">
               <option value="">Select...</option>
-              <option>Hybrid (Toronto HQ)</option>
-              <option>Remote — Canada</option>
-              <option>Remote — International</option>
-              <option>On-site</option>
+              <option>Hybrid</option><option>Remote</option>
             </select>
           </div>
         </div>
@@ -555,91 +514,50 @@
     <div class="form-section">
       <div class="form-section-header">
         <div class="form-step">2</div>
-        <div>
-          <h2>Job description</h2>
-          <p>Claude uses this to generate role-specific outputs rather than generic department templates</p>
-        </div>
+        <div><h2>Job description</h2><p>Claude uses this for role-specific output</p></div>
       </div>
       <div class="form-section-body">
-        <div class="field span2">
-          <textarea id="f-jd" rows="6" placeholder="Paste the job description here — this is what makes each onboarding output specific to the role rather than just the department..."></textarea>
-        </div>
+        <div class="field span2"><textarea id="f-jd" rows="6" placeholder="Paste JD here..."></textarea></div>
       </div>
     </div>
 
-    <button class="gen-btn" id="genBtn" onclick="generate()">
-      Generate onboarding workflow <span class="btn-arrow">→</span>
-    </button>
+    <button class="gen-btn" id="genBtn" onclick="generate()">Generate onboarding workflow <span class="btn-arrow">→</span></button>
 
     <div class="output-wrap" id="out">
       <div class="output-header">
         <h2 class="output-title" id="out-title">Onboarding plan</h2>
         <span class="output-badge">Claude · AI generated</span>
       </div>
-
       <div class="tabs">
         <button class="tab on" onclick="setTab('hm', this)">Hiring manager brief</button>
         <button class="tab" onclick="setTab('nh', this)">New hire guide</button>
         <button class="tab" onclick="setTab('it', this)">IT & finance checklist</button>
       </div>
-
       <div class="pane on" id="pane-hm"></div>
       <div class="pane" id="pane-nh"></div>
       <div class="pane" id="pane-it"></div>
     </div>
-
   </div>
 
-  <footer class="footer">
-    <span>Built by <strong style="font-weight:500">Olivia Wee</strong></span>
-    <span class="footer-dot">·</span>
-    <a href="https://www.linkedin.com/in/oliviawee" target="_blank" style="color: var(--gray-500); transition: color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--gray-500)'">LinkedIn ↗</a>
-    <span class="footer-dot">·</span>
-    <a href="portfolio.html" style="color: var(--gray-500); transition: color 0.2s;" onmouseover="this.style.color='var(--black)'" onmouseout="this.style.color='var(--gray-500)'">Portfolio</a>
-  </footer>
-
   <script>
+    const CONFIG = {
+      systemPrompt: 'You are a People Ops specialist. Respond ONLY with valid JSON. Structure: {"sections":[{"title":"string","day_label":"optional string","tasks":[{"task":"string","owner":"optional string"}]}]}. Owners: People Ops, IT, Finance, Hiring manager, New hire, Recruiter.',
+      tasks: [
+        { id: 'hm', label: 'Hiring manager brief', instructions: 'Generate a hiring manager onboarding brief. Include pre-start prep, day 1, week 1, and 30/60/90 day milestones.' },
+        { id: 'nh', label: 'New hire guide', instructions: 'Generate a warm, practical new hire guide. Include before you start, first day, week 1 priorities, and key tools.' },
+        { id: 'it', label: 'IT & finance checklist', instructions: 'Generate a detailed IT and Finance onboarding checklist. Include provisioning, system access, payroll, and equipment.' }
+      ]
+    };
+
     function setTab(id, btn) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-      document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
-      btn.classList.add('on');
-      document.getElementById('pane-' + id).classList.add('on');
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t === btn));
+      document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
     }
 
-    function showLoading(paneId) {
-      document.getElementById('pane-' + paneId).innerHTML =
-        '<div class="loading"><div class="spinner"></div><span>Generating with Claude...</span></div>';
-    }
-
-    function renderPane(paneId, json) {
+    async function callClaude(config, ctx, paneId) {
       const pane = document.getElementById('pane-' + paneId);
-      try {
-        const clean = json.replace(/```json|```/g, '').trim();
-        const data = JSON.parse(clean);
-        let html = '';
-        (data.sections || []).forEach(s => {
-          if (s.day_label) {
-            html += `<div class="day-label">${s.day_label}</div>`;
-          }
-          html += `<div class="result-section">
-            <div class="result-head"><div class="result-dot"></div><span>${s.title}</span></div>
-            <div class="result-body">`;
-          (s.tasks || []).forEach(t => {
-            const owner = t.owner
-              ? `<span class="task-owner">${t.owner}</span>`
-              : '';
-            html += `<div class="task-item"><div class="task-box"></div><span>${t.task}</span>${owner}</div>`;
-          });
-          html += '</div></div>';
-        });
-        pane.innerHTML = html;
-      } catch (e) {
-        pane.innerHTML = '<div class="err">Could not parse response. Please try again.</div>';
-      }
-    }
-
-    async function callClaude(system, user, paneId) {
-      showLoading(paneId);
+      pane.innerHTML = '<div class="loading"><div class="spinner"></div><span>Generating...</span></div>';
+      
       try {
         const res = await fetch('/api/claude', {
           method: 'POST',
@@ -647,68 +565,57 @@
           body: JSON.stringify({
             model: 'claude-haiku-4-5-20251001',
             max_tokens: 2000,
-            system,
-            messages: [{ role: 'user', content: user }]
+            system: CONFIG.systemPrompt + " " + config.instructions,
+            messages: [{ role: 'user', content: ctx }]
           })
         });
         const data = await res.json();
-        const text = (data.content || [])
-          .filter(b => b.type === 'text')
-          .map(b => b.text)
-          .join('');
-        renderPane(paneId, text);
+        const jsonText = data.content?.[0]?.text?.replace(/```json|```/g, '').trim();
+        renderResult(paneId, JSON.parse(jsonText));
       } catch (e) {
-        document.getElementById('pane-' + paneId).innerHTML =
-          '<div class="err">Something went wrong. Please try again.</div>';
+        pane.innerHTML = '<div class="err">Failed to generate. Please try again.</div>';
       }
     }
 
-    async function generate() {
-      const name    = document.getElementById('f-name').value    || 'New hire';
-      const role    = document.getElementById('f-role').value    || 'team member';
-      const dept    = document.getElementById('f-dept').value    || 'their department';
-      const emp     = document.getElementById('f-emp').value     || 'full-time';
-      const start   = document.getElementById('f-start').value   || 'upcoming start date';
-      const mgr     = document.getElementById('f-mgr').value     || 'their manager';
-      const country = document.getElementById('f-country').value || 'Canada';
-      const work    = document.getElementById('f-work').value    || 'hybrid';
-      const jd      = document.getElementById('f-jd').value      || '';
+    function renderResult(paneId, data) {
+      const pane = document.getElementById('pane-' + paneId);
+      pane.innerHTML = (data.sections || []).map(s => `
+        ${s.day_label ? `<div class="day-label">${s.day_label}</div>` : ''}
+        <div class="result-section">
+          <div class="result-head"><div class="result-dot"></div><span>${s.title}</span></div>
+          <div class="result-body">
+            ${s.tasks.map(t => `<div class="task-item"><div class="task-box"></div><span>${t.task}</span>${t.owner ? `<span class="task-owner">${t.owner}</span>` : ''}</div>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
 
+    async function generate() {
       const btn = document.getElementById('genBtn');
       btn.disabled = true;
-      btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:1.5px;border-color:rgba(255,254,247,0.25);border-top-color:var(--cream)"></div> Generating...';
+      btn.innerHTML = 'Generating...';
 
-      const out = document.getElementById('out');
-      out.classList.add('show');
-      document.getElementById('out-title').textContent =
-        name && name !== 'New hire' ? `${name} · ${role}` : 'Onboarding plan';
+      const formData = {
+        name: document.getElementById('f-name').value || 'New hire',
+        role: document.getElementById('f-role').value || 'team member',
+        dept: document.getElementById('f-dept').value || 'department',
+        emp: document.getElementById('f-emp').value || 'full-time',
+        start: document.getElementById('f-start').value || 'upcoming',
+        mgr: document.getElementById('f-mgr').value || 'manager',
+        country: document.getElementById('f-country').value || 'Canada',
+        work: document.getElementById('f-work').value || 'hybrid',
+        jd: document.getElementById('f-jd').value || ''
+      };
 
-      document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('on', i === 0));
-      document.querySelectorAll('.pane').forEach((p, i) => p.classList.toggle('on', i === 0));
-
-      const ctx = `New hire: ${name} | Role: ${role} | Department: ${dept} | Employment type: ${emp} | Start date: ${start} | Hiring manager: ${mgr} | Country: ${country} | Work arrangement: ${work}${jd ? ` | Job description: ${jd.slice(0, 800)}` : ''}`;
-
-      const j = `Respond ONLY with valid JSON. No preamble, no markdown fences. Structure: {"sections":[{"title":"string","day_label":"optional string","tasks":[{"task":"string","owner":"optional short string"}]}]}. Owner values: "People Ops", "IT", "Finance", "Hiring manager", "New hire", "Recruiter".`;
-
-      await Promise.all([
-        callClaude(
-          `You are a People Ops specialist. Generate a hiring manager onboarding brief. Use the job description as the primary input to make it genuinely role-specific. Include sections: pre-start prep, day 1 agenda, week 1 check-ins, 30/60/90 day milestones. ${j}`,
-          ctx, 'hm'
-        ),
-        callClaude(
-          `You are a People Ops specialist. Generate a warm, practical new hire onboarding guide. Use the JD to tailor it specifically to their role. Include sections: before you start, your first day, first week priorities, key tools to set up, people to meet. ${j}`,
-          ctx, 'nh'
-        ),
-        callClaude(
-          `You are a People Ops specialist. Generate a detailed IT and Finance onboarding checklist. Use the role and JD to determine the right systems access. Include sections: IT setup and provisioning, systems access, payroll setup, benefits enrollment, equipment, compliance. Tailor to employment type and country. Assign owners throughout. ${j}`,
-          ctx, 'it'
-        )
-      ]);
+      const ctx = Object.entries(formData).map(([k, v]) => `${k}: ${v}`).join(' | ');
+      document.getElementById('out').classList.add('show');
+      document.getElementById('out-title').textContent = formData.name !== 'New hire' ? `${formData.name} · ${formData.role}` : 'Onboarding plan';
+      
+      await Promise.all(CONFIG.tasks.map(t => callClaude(t, ctx, t.id)));
 
       btn.disabled = false;
-      btn.innerHTML = 'Regenerate workflow <span class="btn-arrow">→</span>';
+      btn.innerHTML = 'Regenerate workflow →';
     }
   </script>
-
 </body>
 </html>
